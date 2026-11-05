@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santiago Sainz Cruz — Projects</title>
+<meta name="description" content="Projects by Santiago Sainz Cruz, financial analyst in Guadalajara.">
+<style>
+  :root{
+    --navy:#1F3864; --navy-soft:#DCE6F2; --ink:#1d1d1f; --muted:#5f6670;
+    --line:#e3e6ea; --bg:#ffffff; --panel:#f7f8fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Helvetica Neue",Arial,"Liberation Sans",sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  header{padding:48px 0 28px;border-bottom:2px solid var(--navy)}
+  .lang{float:right;font-size:13px;margin-top:8px}
+  .lang a{color:var(--muted);text-decoration:none;padding:2px 6px}
+  .lang a.on{color:var(--navy);font-weight:600;border-bottom:2px solid var(--navy)}
+  header h1{font-size:30px;letter-spacing:.5px;color:var(--navy)}
+  header .role{color:var(--muted);margin-top:2px}
+  header .intro{margin-top:16px;max-width:680px}
+  header .contact{margin-top:14px;font-size:13px;color:var(--muted)}
+  header .contact a{color:var(--navy)}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:28px 0 18px}
+  .toolbar span{font-size:13px;color:var(--muted);margin-right:4px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:3px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--ink)}
+  .chip:hover{border-color:var(--navy)}
+  .chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+
+  .layout{display:grid;grid-template-columns:330px 1fr;gap:24px;align-items:start}
+  .list{display:flex;flex-direction:column;gap:10px}
+  .card{border:1px solid var(--line);border-left:4px solid transparent;padding:14px 16px;cursor:pointer;background:#fff;transition:border-color .15s}
+  .card:hover{border-left-color:var(--navy-soft)}
+  .card.active{border-left-color:var(--navy);background:var(--panel)}
+  .card.hide{display:none}
+  .card .cat{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+  .card h3{font-size:15px;margin-top:3px;color:var(--navy)}
+  .card p{font-size:13px;color:var(--muted);margin-top:4px}
+
+  .detail{border:1px solid var(--line);padding:26px 28px;min-height:420px}
+  .detail .cat{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+  .detail h2{color:var(--navy);font-size:22px;margin:4px 0 14px}
+  .detail h4{font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:var(--navy);margin:20px 0 6px}
+  .detail ul{padding-left:18px}
+  .detail li{margin-bottom:5px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{background:var(--navy-soft);color:var(--navy);font-size:12px;padding:3px 9px;border-radius:2px}
+  .scope{background:var(--panel);border-left:3px solid var(--navy);padding:10px 14px;font-size:14px;margin-top:20px}
+
+  section.matrix{margin:44px 0 20px}
+  section.matrix h2{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--navy);margin-bottom:4px}
+  section.matrix p{font-size:13px;color:var(--muted);margin-bottom:14px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:center}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-weight:600;color:var(--muted);font-size:12px;vertical-align:bottom}
+  tbody tr{cursor:pointer}
+  tbody tr:hover td{background:var(--panel)}
+  tbody tr.active td{background:var(--navy-soft)}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--navy)}
+  .dot.half{background:#fff;border:2px solid var(--navy)}
+  .legend{font-size:12px;color:var(--muted);margin-top:10px}
+  .legend .dot{vertical-align:middle;margin:0 4px 0 12px}
+
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 40px;font-size:13px;color:var(--muted)}
+
+  @media (max-width:760px){
+    .layout{grid-template-columns:1fr}
+    .detail{min-height:0;padding:20px}
+    header{padding-top:32px}
+    .matrix-scroll{overflow-x:auto}
+    table{min-width:620px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="lang"><a href="/">ES</a><a class="on" href="/en">EN</a></div>
+    <h1>Santiago Sainz Cruz</h1>
+    <div class="role">Financial Analyst · Guadalajara, Mexico</div>
+    <p class="intro">These are some projects I have worked on beyond monthly closes: market expansion, accounting process automation, financial modeling and building my own tools. For confidentiality reasons I do not show figures or client names; happy to go into detail in an interview.</p>
+    <div class="contact"><a href="mailto:santiagosainzcruz123@gmail.com">santiagosainzcruz123@gmail.com</a> · +52 33 1194 2398</div>
+  </header>
+
+  <div class="toolbar" id="filters">
+    <span>Filter:</span>
+    <button class="chip on" data-f="all">All</button>
+    <button class="chip" data-f="comercial">Market expansion</button>
+    <button class="chip" data-f="automatizacion">Automation</button>
+    <button class="chip" data-f="modelacion">Financial modeling</button>
+    <button class="chip" data-f="desarrollo">Tool development</button>
+  </div>
+
+  <div class="layout">
+    <div class="list" id="list"></div>
+    <article class="detail" id="detail"></article>
+  </div>
+
+  <section class="matrix">
+    <h2>Skills by project</h2>
+    <p>Click a row to open the project.</p>
+    <div class="matrix-scroll"><table id="matrix"></table></div>
+    <div class="legend"><span class="dot"></span>Primary <span class="dot half"></span>Supporting</div>
+  </section>
+
+  <footer>Santiago Sainz Cruz · B.A. in Finance, ITESO</footer>
+</div>
+
+<script>
+const projects = [
+  {
+    id:"amazon", cat:"comercial", catLabel:"Market expansion · Independent project",
+    title:"Amazon Canada market entry",
+    short:"Seller account, market benchmark and logistics partner search for a Mexican company.",
+    context:"A Mexican organic food company wanted to sell on Amazon Canada, but its seller account was blocked and it had no logistics in the country.",
+    did:[
+      "Helped unlock the company's seller account on Amazon.ca.",
+      "Built a competitor benchmark on Amazon.ca covering pricing, packaging and category positioning.",
+      "Documented logistics requirements and operating scenarios for Canada.",
+      "Reached out to 3PL providers and warehouses in Canada and set up the meetings to negotiate a warehouse lease or a 3PL arrangement.",
+      "Handled all supplier communication in English."
+    ],
+    scope:"My part ended once the negotiation with providers was set up; the final decision and operations were handled by the company.",
+    tools:["Excel","Word","Market research","Supplier negotiation","English"]
+  },
+  {
+    id:"conciliacion", cat:"automatizacion", catLabel:"Accounting automation",
+    title:"Bank reconciliation automation",
+    short:"Monthly reconciliation from three sources, with automatic classification and exception review.",
+    context:"A food-sector client's monthly bank reconciliation was done by hand, matching the bank statement against cash and point-of-sale terminal transactions.",
+    did:[
+      "Defined the rules to assign each transaction its account, supplier, description and classification.",
+      "Automated filling the reconciliation template from the month's three files.",
+      "Designed it so uncertain items are flagged for review instead of being classified blindly.",
+      "Documented the process so it can be repeated every month-end."
+    ],
+    scope:"With the tool, the monthly work comes down to loading the files and reviewing the flagged items.",
+    tools:["Excel","AI-assisted automation","Bank reconciliation","Month-end close"]
+  },
+  {
+    id:"inmobiliario", cat:"modelacion", catLabel:"Financial modeling",
+    title:"Real estate financial model",
+    short:"Multi-scenario model for a development of lots and country houses.",
+    context:"A development of lots and country houses needed a model to project sales, collections and cash flow under different assumptions.",
+    did:[
+      "Built an assumptions sheet with a scenario selector (base, optimistic and pessimistic).",
+      "Modeled sales and collections payment distribution and the title-closing schedule.",
+      "Built a cash flow with dynamic columns and a revenue forecast per unit.",
+      "Diagnosed and cleaned up the previous file, including redirecting its macros."
+    ],
+    scope:"The model lets you switch scenarios from a single input and see the effect across the whole cash flow.",
+    tools:["Excel","VBA","Cash flow","Scenario analysis","Pro forma vs. budget"]
+  },
+  {
+    id:"finia", cat:"desarrollo", catLabel:"Tool development · Personal project",
+    title:"Finia — personal finance app",
+    short:"My own web app to log expenses and track budget vs. actual.",
+    context:"I wanted my own tool to manage my finances with the same budget vs. actual logic I use at work.",
+    did:[
+      "Designed and built a web app with Google sign-in.",
+      "Includes accounts, transactions, transfers and recurring entries.",
+      "Budget vs. actual tab with progress bars and monthly history.",
+      "Automatic alerts and CSV export."
+    ],
+    scope:"Personal project; happy to show a demo in an interview.",
+    tools:["JavaScript","Supabase (PostgreSQL)","Vercel","Budget vs. actual"]
+  }
+];
+
+const skills = ["Financial analysis","Modeling","Automation","Suppliers & negotiation","English","Web development"];
+// 2 = principal, 1 = apoyo
+const map = {
+  amazon:       [1,0,0,2,2,0],
+  conciliacion: [2,0,2,0,0,0],
+  inmobiliario: [2,2,1,0,0,0],
+  finia:        [1,0,1,0,0,2]
+};
+
+const list = document.getElementById("list");
+const detail = document.getElementById("detail");
+const matrix = document.getElementById("matrix");
+let current = projects[0].id;
+
+function renderList(){
+  list.innerHTML = projects.map(p => `
+    <div class="card" data-id="${p.id}" data-cat="${p.cat}">
+      <div class="cat">${p.catLabel.split(" · ")[0]}</div>
+      <h3>${p.title}</h3>
+      <p>${p.short}</p>
+    </div>`).join("");
+  list.querySelectorAll(".card").forEach(c => c.addEventListener("click", () => select(c.dataset.id, true)));
+}
+
+function renderMatrix(){
+  const head = `<thead><tr><th>Project</th>${skills.map(s=>`<th>${s}</th>`).join("")}</tr></thead>`;
+  const body = projects.map(p => `<tr data-id="${p.id}"><td>${p.title.split(" — ")[0]}</td>${
+    map[p.id].map(v => `<td>${v===2?'<span class="dot"></span>':v===1?'<span class="dot half"></span>':''}</td>`).join("")
+  }</tr>`).join("");
+  matrix.innerHTML = head + `<tbody>${body}</tbody>`;
+  matrix.querySelectorAll("tbody tr").forEach(r => r.addEventListener("click", () => {
+    setFilter("all");
+    select(r.dataset.id, false);
+    detail.scrollIntoView({behavior:"smooth", block:"start"});
+  }));
+}
+
+function select(id, scrollOnMobile){
+  current = id;
+  const p = projects.find(x => x.id === id);
+  detail.innerHTML = `
+    <div class="cat">${p.catLabel}</div>
+    <h2>${p.title}</h2>
+    <h4>Context</h4><p>${p.context}</p>
+    <h4>What I did</h4><ul>${p.did.map(d=>`<li>${d}</li>`).join("")}</ul>
+    <div class="scope">${p.scope}</div>
+    <h4>Tools and skills</h4><div class="tags">${p.tools.map(t=>`<span class="tag">${t}</span>`).join("")}</div>`;
+  list.querySelectorAll(".card").forEach(c => c.classList.toggle("active", c.dataset.id === id));
+  matrix.querySelectorAll("tbody tr").forEach(r => r.classList.toggle("active", r.dataset.id === id));
+  if (scrollOnMobile && window.innerWidth <= 760) detail.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function setFilter(f){
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c.dataset.f === f));
+  list.querySelectorAll(".card").forEach(c => c.classList.toggle("hide", f !== "all" && c.dataset.cat !== f));
+  if (f !== "all"){
+    const first = projects.find(p => p.cat === f);
+    if (first) select(first.id, false);
+  }
+}
+document.getElementById("filters").addEventListener("click", e => {
+  if (e.target.classList.contains("chip")) setFilter(e.target.dataset.f);
+});
+
+renderList(); renderMatrix(); select(current, false);
+</script>
+</body>
+</html>
