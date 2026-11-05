@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santiago Sainz Cruz — Proyectos</title>
+<meta name="description" content="Proyectos de Santiago Sainz Cruz, analista financiero en Guadalajara.">
+<style>
+  :root{
+    --navy:#1F3864; --navy-soft:#DCE6F2; --ink:#1d1d1f; --muted:#5f6670;
+    --line:#e3e6ea; --bg:#ffffff; --panel:#f7f8fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Helvetica Neue",Arial,"Liberation Sans",sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  header{padding:48px 0 28px;border-bottom:2px solid var(--navy)}
+  header h1{font-size:30px;letter-spacing:.5px;color:var(--navy)}
+  header .role{color:var(--muted);margin-top:2px}
+  header .intro{margin-top:16px;max-width:680px}
+  header .contact{margin-top:14px;font-size:13px;color:var(--muted)}
+  header .contact a{color:var(--navy)}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:28px 0 18px}
+  .toolbar span{font-size:13px;color:var(--muted);margin-right:4px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:3px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--ink)}
+  .chip:hover{border-color:var(--navy)}
+  .chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+
+  .layout{display:grid;grid-template-columns:330px 1fr;gap:24px;align-items:start}
+  .list{display:flex;flex-direction:column;gap:10px}
+  .card{border:1px solid var(--line);border-left:4px solid transparent;padding:14px 16px;cursor:pointer;background:#fff;transition:border-color .15s}
+  .card:hover{border-left-color:var(--navy-soft)}
+  .card.active{border-left-color:var(--navy);background:var(--panel)}
+  .card.hide{display:none}
+  .card .cat{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+  .card h3{font-size:15px;margin-top:3px;color:var(--navy)}
+  .card p{font-size:13px;color:var(--muted);margin-top:4px}
+
+  .detail{border:1px solid var(--line);padding:26px 28px;min-height:420px}
+  .detail .cat{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+  .detail h2{color:var(--navy);font-size:22px;margin:4px 0 14px}
+  .detail h4{font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:var(--navy);margin:20px 0 6px}
+  .detail ul{padding-left:18px}
+  .detail li{margin-bottom:5px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{background:var(--navy-soft);color:var(--navy);font-size:12px;padding:3px 9px;border-radius:2px}
+  .scope{background:var(--panel);border-left:3px solid var(--navy);padding:10px 14px;font-size:14px;margin-top:20px}
+
+  section.matrix{margin:44px 0 20px}
+  section.matrix h2{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--navy);margin-bottom:4px}
+  section.matrix p{font-size:13px;color:var(--muted);margin-bottom:14px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:center}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-weight:600;color:var(--muted);font-size:12px;vertical-align:bottom}
+  tbody tr{cursor:pointer}
+  tbody tr:hover td{background:var(--panel)}
+  tbody tr.active td{background:var(--navy-soft)}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--navy)}
+  .dot.half{background:#fff;border:2px solid var(--navy)}
+  .legend{font-size:12px;color:var(--muted);margin-top:10px}
+  .legend .dot{vertical-align:middle;margin:0 4px 0 12px}
+
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 40px;font-size:13px;color:var(--muted)}
+
+  @media (max-width:760px){
+    .layout{grid-template-columns:1fr}
+    .detail{min-height:0;padding:20px}
+    header{padding-top:32px}
+    .matrix-scroll{overflow-x:auto}
+    table{min-width:620px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Santiago Sainz Cruz</h1>
+    <div class="role">Analista Financiero · Guadalajara, México</div>
+    <p class="intro">Estos son algunos proyectos en los que he trabajado además de los cierres mensuales: expansión comercial, automatización de procesos contables, modelación financiera y desarrollo de herramientas propias. Por confidencialidad no muestro cifras ni nombres de clientes; con gusto platico el detalle en entrevista.</p>
+    <div class="contact"><a href="mailto:santiagosainzcruz123@gmail.com">santiagosainzcruz123@gmail.com</a> · +52 33 1194 2398</div>
+  </header>
+
+  <div class="toolbar" id="filters">
+    <span>Filtrar:</span>
+    <button class="chip on" data-f="all">Todos</button>
+    <button class="chip" data-f="comercial">Expansión comercial</button>
+    <button class="chip" data-f="automatizacion">Automatización</button>
+    <button class="chip" data-f="modelacion">Modelación financiera</button>
+    <button class="chip" data-f="desarrollo">Desarrollo de herramientas</button>
+  </div>
+
+  <div class="layout">
+    <div class="list" id="list"></div>
+    <article class="detail" id="detail"></article>
+  </div>
+
+  <section class="matrix">
+    <h2>Habilidades por proyecto</h2>
+    <p>Da clic en una fila para ver el proyecto.</p>
+    <div class="matrix-scroll"><table id="matrix"></table></div>
+    <div class="legend"><span class="dot"></span>Principal <span class="dot half"></span>De apoyo</div>
+  </section>
+
+  <footer>Santiago Sainz Cruz · Licenciatura en Finanzas, ITESO</footer>
+</div>
+
+<script>
+const projects = [
+  {
+    id:"amazon", cat:"comercial", catLabel:"Expansión comercial · Proyecto independiente",
+    title:"Entrada a Amazon Canadá",
+    short:"Cuenta de vendedor, benchmark de mercado y búsqueda de operador logístico para una empresa mexicana.",
+    context:"Una empresa mexicana de alimentos orgánicos quería vender en Amazon Canadá, pero tenía la cuenta de vendedor bloqueada y no contaba con logística en ese país.",
+    did:[
+      "Ayudé a desbloquear la cuenta de vendedor de la empresa en Amazon.ca.",
+      "Armé un benchmark de competidores en Amazon.ca para ubicar precio, presentación y posicionamiento de la categoría.",
+      "Documenté los requerimientos logísticos y los escenarios de operación en Canadá.",
+      "Contacté operadores 3PL y bodegas en Canadá y organicé las reuniones para negociar la renta de bodega o el esquema 3PL.",
+      "Llevé toda la comunicación con proveedores en inglés."
+    ],
+    scope:"Mi parte terminó al dejar la negociación armada con los proveedores; la decisión final y la operación quedaron a cargo de la empresa.",
+    tools:["Excel","Word","Investigación de mercado","Negociación con proveedores","Inglés"]
+  },
+  {
+    id:"conciliacion", cat:"automatizacion", catLabel:"Automatización contable",
+    title:"Automatización de conciliación bancaria",
+    short:"Conciliación mensual a partir de tres fuentes, con clasificación automática y revisión de excepciones.",
+    context:"La conciliación mensual de la chequera de un cliente del sector alimentos se hacía a mano, cruzando el estado de cuenta, los movimientos en efectivo y los de terminal punto de venta.",
+    did:[
+      "Definí las reglas para asignar a cada movimiento su cuenta, proveedor, concepto y clasificación.",
+      "Automaticé el llenado del formato de conciliación a partir de los tres archivos del mes.",
+      "Diseñé que las partidas dudosas se marquen para revisión en lugar de clasificarse a ciegas.",
+      "Dejé el proceso documentado para repetirlo cada cierre de mes."
+    ],
+    scope:"Con la herramienta, el trabajo mensual queda en cargar los archivos y revisar las partidas marcadas.",
+    tools:["Excel","Automatización con IA","Conciliación bancaria","Cierre mensual"]
+  },
+  {
+    id:"inmobiliario", cat:"modelacion", catLabel:"Modelación financiera",
+    title:"Modelo financiero inmobiliario",
+    short:"Modelo multi-escenario para un desarrollo de lotes y casas de campo.",
+    context:"Un desarrollo de lotes y casas de campo necesitaba un modelo que proyectara ventas, cobranza y flujo bajo distintos supuestos.",
+    did:[
+      "Construí una hoja de premisas con selector de escenario (base, optimista y pesimista).",
+      "Modelé la redistribución de pagos de ventas y cobranza, y el calendario de escrituración.",
+      "Armé un flujo de caja con columnas dinámicas y un forecast de ingresos por unidad.",
+      "Hice el diagnóstico y la limpieza del archivo anterior, incluyendo la redirección de sus macros."
+    ],
+    scope:"El modelo permite cambiar un escenario desde un solo punto y ver el efecto en todo el flujo.",
+    tools:["Excel","VBA","Flujo de caja","Análisis de escenarios","Proforma vs. presupuesto"]
+  },
+  {
+    id:"finia", cat:"desarrollo", catLabel:"Desarrollo de herramientas · Proyecto personal",
+    title:"Finia — app de finanzas personales",
+    short:"App web propia para registrar gastos y controlar presupuesto vs. real.",
+    context:"Quería una herramienta propia para llevar mis finanzas con la misma lógica de presupuesto vs. real que uso en el trabajo.",
+    did:[
+      "Diseñé y desarrollé una app web con inicio de sesión con Google.",
+      "Incluye cuentas, transacciones, transferencias y movimientos recurrentes.",
+      "Pestaña de presupuesto vs. real con barras de avance e histórico mensual.",
+      "Alertas automáticas y exportación a CSV."
+    ],
+    scope:"Proyecto personal; con gusto muestro una demo en entrevista.",
+    tools:["JavaScript","Supabase (PostgreSQL)","Vercel","Presupuesto vs. real"]
+  }
+];
+
+const skills = ["Análisis financiero","Modelación","Automatización","Proveedores y negociación","Inglés","Desarrollo web"];
+// 2 = principal, 1 = apoyo
+const map = {
+  amazon:       [1,0,0,2,2,0],
+  conciliacion: [2,0,2,0,0,0],
+  inmobiliario: [2,2,1,0,0,0],
+  finia:        [1,0,1,0,0,2]
+};
+
+const list = document.getElementById("list");
+const detail = document.getElementById("detail");
+const matrix = document.getElementById("matrix");
+let current = projects[0].id;
+
+function renderList(){
+  list.innerHTML = projects.map(p => `
+    <div class="card" data-id="${p.id}" data-cat="${p.cat}">
+      <div class="cat">${p.catLabel.split(" · ")[0]}</div>
+      <h3>${p.title}</h3>
+      <p>${p.short}</p>
+    </div>`).join("");
+  list.querySelectorAll(".card").forEach(c => c.addEventListener("click", () => select(c.dataset.id, true)));
+}
+
+function renderMatrix(){
+  const head = `<thead><tr><th>Proyecto</th>${skills.map(s=>`<th>${s}</th>`).join("")}</tr></thead>`;
+  const body = projects.map(p => `<tr data-id="${p.id}"><td>${p.title.split(" — ")[0]}</td>${
+    map[p.id].map(v => `<td>${v===2?'<span class="dot"></span>':v===1?'<span class="dot half"></span>':''}</td>`).join("")
+  }</tr>`).join("");
+  matrix.innerHTML = head + `<tbody>${body}</tbody>`;
+  matrix.querySelectorAll("tbody tr").forEach(r => r.addEventListener("click", () => {
+    setFilter("all");
+    select(r.dataset.id, false);
+    detail.scrollIntoView({behavior:"smooth", block:"start"});
+  }));
+}
+
+function select(id, scrollOnMobile){
+  current = id;
+  const p = projects.find(x => x.id === id);
+  detail.innerHTML = `
+    <div class="cat">${p.catLabel}</div>
+    <h2>${p.title}</h2>
+    <h4>Contexto</h4><p>${p.context}</p>
+    <h4>Qué hice</h4><ul>${p.did.map(d=>`<li>${d}</li>`).join("")}</ul>
+    <div class="scope">${p.scope}</div>
+    <h4>Herramientas y habilidades</h4><div class="tags">${p.tools.map(t=>`<span class="tag">${t}</span>`).join("")}</div>`;
+  list.querySelectorAll(".card").forEach(c => c.classList.toggle("active", c.dataset.id === id));
+  matrix.querySelectorAll("tbody tr").forEach(r => r.classList.toggle("active", r.dataset.id === id));
+  if (scrollOnMobile && window.innerWidth <= 760) detail.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function setFilter(f){
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c.dataset.f === f));
+  list.querySelectorAll(".card").forEach(c => c.classList.toggle("hide", f !== "all" && c.dataset.cat !== f));
+  if (f !== "all"){
+    const first = projects.find(p => p.cat === f);
+    if (first) select(first.id, false);
+  }
+}
+document.getElementById("filters").addEventListener("click", e => {
+  if (e.target.classList.contains("chip")) setFilter(e.target.dataset.f);
+});
+
+renderList(); renderMatrix(); select(current, false);
+</script>
+</body>
+</html>
