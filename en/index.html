@@ -168,6 +168,21 @@ const projects = [
     scope:"Personal project; happy to show a demo in an interview.",
     tools:["JavaScript","Supabase (PostgreSQL)","Vercel","Budget vs. actual"]
   }
+  ,{
+    id:"jarvis", cat:"desarrollo", catLabel:"Tool development · Personal project",
+    title:"JARVIS — productivity assistant and CRM",
+    short:"My own web app with an AI assistant for tasks, clients, email and meetings.",
+    context:"I needed a single tool to track to-dos, deliverables and contacts across several clients instead of scattered lists.",
+    did:[
+      "Designed a web app with weekly task tracking and a CRM-style contact base.",
+      "Integrated an AI assistant that creates tasks by voice dictation, including from an iPhone Siri shortcut.",
+      "Connected Gmail and Google Calendar: it suggests tasks from emails, drafts replies and schedules meetings.",
+      "Reminders for unattended emails and a to-do briefing the assistant reads aloud.",
+      "360 view per client with its tasks, emails and meetings."
+    ],
+    scope:"Zero-cost personal project, built with the help of AI coding tools. Happy to show a demo in an interview.",
+    tools:["JavaScript","Supabase","Vercel","AI (Groq)","Gmail and Google Calendar"]
+  }
 ];
 
 const skills = ["Financial analysis","Modeling","Automation","Suppliers & negotiation","English","Web development"];
@@ -176,7 +191,8 @@ const map = {
   amazon:       [1,0,0,2,2,0],
   conciliacion: [2,0,2,0,0,0],
   inmobiliario: [2,2,1,0,0,0],
-  finia:        [1,0,1,0,0,2]
+  finia:        [1,0,1,0,0,2],
+  jarvis:       [0,0,2,0,0,2]
 };
 
 const list = document.getElementById("list");
