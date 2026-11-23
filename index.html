@@ -14,6 +14,9 @@
   body{font-family:"Helvetica Neue",Arial,"Liberation Sans",sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;font-size:15px}
   .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
   header{padding:48px 0 28px;border-bottom:2px solid var(--navy)}
+  .lang{float:right;font-size:13px;margin-top:8px}
+  .lang a{color:var(--muted);text-decoration:none;padding:2px 6px}
+  .lang a.on{color:var(--navy);font-weight:600;border-bottom:2px solid var(--navy)}
   header h1{font-size:30px;letter-spacing:.5px;color:var(--navy)}
   header .role{color:var(--muted);margin-top:2px}
   header .intro{margin-top:16px;max-width:680px}
@@ -75,6 +78,7 @@
 <body>
 <div class="wrap">
   <header>
+    <div class="lang"><a class="on" href="/">ES</a><a href="/en">EN</a></div>
     <h1>Santiago Sainz Cruz</h1>
     <div class="role">Analista Financiero · Guadalajara, México</div>
     <p class="intro">Estos son algunos proyectos en los que he trabajado además de los cierres mensuales: expansión comercial, automatización de procesos contables, modelación financiera y desarrollo de herramientas propias. Por confidencialidad no muestro cifras ni nombres de clientes; con gusto platico el detalle en entrevista.</p>
@@ -164,6 +168,21 @@ const projects = [
     scope:"Proyecto personal; con gusto muestro una demo en entrevista.",
     tools:["JavaScript","Supabase (PostgreSQL)","Vercel","Presupuesto vs. real"]
   }
+  ,{
+    id:"jarvis", cat:"desarrollo", catLabel:"Desarrollo de herramientas · Proyecto personal",
+    title:"JARVIS — asistente de productividad y CRM",
+    short:"App web propia con asistente de IA para tareas, clientes, correo y reuniones.",
+    context:"Necesitaba una sola herramienta para dar seguimiento a pendientes, entregables y contactos de varios clientes, en lugar de listas sueltas.",
+    did:[
+      "Diseñé una app web con registro de tareas semanales y una base de contactos tipo CRM.",
+      "Integré un asistente de IA que crea tareas por dictado, también desde un atajo de Siri en el iPhone.",
+      "Conecté Gmail y Google Calendar: sugiere tareas a partir de correos, redacta borradores de respuesta y agenda reuniones.",
+      "Recordatorio de correos sin atender y resumen de pendientes que el asistente lee en voz alta.",
+      "Vista 360 por cliente con sus tareas, correos y reuniones."
+    ],
+    scope:"Proyecto personal de costo cero, construido con apoyo de herramientas de IA para programar. Con gusto muestro una demo en entrevista.",
+    tools:["JavaScript","Supabase","Vercel","IA (Groq)","Gmail y Google Calendar"]
+  }
 ];
 
 const skills = ["Análisis financiero","Modelación","Automatización","Proveedores y negociación","Inglés","Desarrollo web"];
@@ -172,7 +191,8 @@ const map = {
   amazon:       [1,0,0,2,2,0],
   conciliacion: [2,0,2,0,0,0],
   inmobiliario: [2,2,1,0,0,0],
-  finia:        [1,0,1,0,0,2]
+  finia:        [1,0,1,0,0,2],
+  jarvis:       [0,0,2,0,0,2]
 };
 
 const list = document.getElementById("list");
